@@ -1,0 +1,105 @@
+<view class="head" wx:if="{{isInHospital==='1'}}">
+  <van-icon bindtap="stepDay" data-step="{{ -1 }}" name="arrow-left" />
+  <view bindtap="selectDay" class="date">{{ currentDateText }}</view>
+  <van-icon bindtap="stepDay" data-step="{{ 1 }}" name="arrow" wx:if="{{today>currentDate}}" />
+</view>
+
+<!-- 未出院的显示日清单 -->
+<view wx:if="{{isInHospital==='1'&&info.inpatientBillList&&info.inpatientBillList.length>0}}">
+  <van-cell-group custom-class="cell-group">
+    <van-cell title="科室" value="{{info.department}}" />
+    <van-cell title="费别" value="{{info.rateTypeName}}" />
+    <van-cell title="住院号" value="{{info.visitNum}}" />
+    <van-cell title="床号" value="{{info.bedNum}}" />
+    <van-cell title="姓名" value="{{ info.patientName }}" />
+    <van-cell title="交款合计">
+      <view class="balance">{{info.totalCost}}</view>元
+    </van-cell>
+    <van-cell title="预交金余额">
+      <view class="balance">{{info.depositBalance}}</view>元
+    </van-cell>
+    <van-cell title="缴款总额">
+      <view class="balance">{{info.totalDeposit}}</view>元
+    </van-cell>
+  </van-cell-group>
+
+  <van-panel custom-class="panel">
+    <view class="panel-head">
+      <view class="code">项目编码</view>
+      <view class="title">项目名称</view>
+      <view class="price">单价</view>
+      <view class="count">数量</view>
+      <view class="amount">金额</view>
+    </view>
+
+    <view class="panel-list" wx:for="{{ info.inpatientBillList }}" wx:key="index">
+      <view class="panel-list-head">{{ item.receiptClassName }}</view>
+      <view class="panel-list-item">
+        <view class="code">{{ item.itemCode }}</view>
+        <view class="title">{{ item.itemName }}</view>
+        <view class="price">{{ item.price }}</view>
+        <view class="count">{{ item.quantity }}({{ item.unit }})</view>
+        <view class="amount balance">{{ item.cost }}</view>
+      </view>
+    </view>
+
+    <view class="total">
+      本日合计：
+      <view class="balance">{{ info.totalCost }}</view>元
+    </view>
+  </van-panel>
+
+  <view
+    class="tips"
+  >* 温馨提示：只能查询今天之前的数据，此单为住院期间每日费用清单，仅供参考，不作为结算和报销凭证，以实际结算发票为准。在整个住院治疗过程中，医务人员根据患者病情和实际检查、治疗情况，进行退费和补计费操作若有异议，请及时与医务人员联系，以便说明或更正。谢谢您的理解和配合。</view>
+</view>
+
+<!-- 已出院的显示汇总清单 -->
+<view scroll-y wx:elif="{{isInHospital==='0'}}">
+  <van-cell-group>
+    <van-cell title="科室" value="{{info.department}}" />
+    <van-cell title="费别" value="{{info.rateType}}" />
+    <van-cell title="住院号" value="{{info.inpatientNum}}" />
+    <van-cell title="床号" value="{{info.bedNum}}" />
+    <van-cell title="姓名" value="{{ info.patientName }}" />
+     <van-cell title="缴款总额">
+      <text class="balance">{{info.cost}}</text>元
+    </van-cell>
+  </van-cell-group>
+
+  <van-panel custom-class="panel">
+    <view class="panel-head">
+      <view class="code">项目编码</view>
+      <view class="title">项目名称</view>
+      <view class="price">单价</view>
+      <view class="count">数量</view>
+      <view class="amount">金额</view>
+    </view>
+
+    <view class="panel-list" wx:for="{{ info.inpatientBillDetailVos }}" wx:key="index">
+      <view class="panel-list-head">{{ item.receiptClassName }}</view>
+      <view class="panel-list-item" wx:for="{{item.list}}" wx:for-item="i">
+        <view class="code">{{ i.itemCode }}</view>
+        <view class="title">{{ i.itemName }}</view>
+        <view class="price">{{ i.price }}</view>
+        <view class="count">{{ i.quantity }}({{ i.unit }})</view>
+        <view class="amount balance">{{ i.cost }}</view>
+      </view>
+    </view>
+  </van-panel>
+</view>
+
+<view class="no-data" wx:if="{{!info.inpatientBillDetailVos||info.inpatientBillDetailVos.length===0}}">
+  <van-icon name="comment-o" size="36px" />
+  <view>没有数据</view>
+</view>
+
+<van-popup bind:close="popupClose" position="bottom" show="{{ popupShow }}">
+  <van-datetime-picker
+    bind:cancel="popupClose"
+    bind:confirm="onPicker"
+    min-date="{{ minDate }}"
+    type="date"
+    value="{{ currentDate }}"
+  />
+</van-popup>

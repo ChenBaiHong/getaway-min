@@ -1,0 +1,47 @@
+<!--components/patientcard/index.wxml-->
+<van-cell-group border="{{ false }}" class="patient-top">
+  <van-cell
+    bind:click="show"
+    border="{{ false }}"
+    custom-class="patient-show"
+    title="当前就诊人"
+    value="{{ patientSelected.name || '(请申领健康卡)' }}"
+    value-class="patient-value"
+  >
+    <van-icon custom-class="patient-icon" name="card" slot="icon" />
+    <van-icon
+      custom-class="patient-arrow"
+      name="arrow-down"
+      slot="right-icon"
+      wx:if="{{ !disabled && patientList.length > 1 }}"
+    />
+    <!-- <van-loading size="40rpx" /> -->
+  </van-cell>
+</van-cell-group>
+<van-popup
+  bind:close="close"
+  custom-style="top:88rpx"
+  overlay
+  overlay-style="top:88rpx"
+  position="top"
+  show="{{ popupShow }}"
+>
+  <van-radio-group value="{{ patientSelected.hisPatientId }}">
+    <van-cell-group>
+      <van-cell
+        bind:click="click"
+        clickable
+        custom-class="patient-item"
+        data-item="{{ item }}"
+        title="{{ item.epcNum }}"
+        title-class="patient-item-title"
+        value="{{ item.name }}"
+        value-class="patient-item-value"
+        wx:for="{{ patientList }}"
+        wx:key="index"
+      >
+        <van-radio checked-color="#3E697A" name="{{ item.hisPatientId }}" slot="icon" />
+      </van-cell>
+    </van-cell-group>
+  </van-radio-group>
+</van-popup>

@@ -1,0 +1,145 @@
+<!-- pages/index/index.wxml -->
+<patientcard bind:auth="popupAuthOpen" bind:change="cardChange" />
+
+<scroll-view scroll-y>
+  <swiper
+    autoplay
+    circular
+    indicator-active-color="#3E697A"
+    indicator-color="rgba(255, 255, 255, 0.5)"
+    indicator-dots="{{ imgUrls.length > 1 }}"
+  >
+    <swiper-item wx:for="{{ imgUrls }}" wx:key="index">
+      <image class="slide-image" lazy-load src="{{ item }}" />
+    </swiper-item>
+  </swiper>
+
+  <van-tabs color="#3E697A" line-width="{{ minHW * 0.2 }}">
+    <van-tab title="{{ tab.title }}" wx:for="{{ tabs }}" wx:for-index="idx" wx:for-item="tab" wx:key="idx">
+      <van-grid border="{{ false }}" class="menu" column-num="4" square use-slot>
+        <van-grid-item
+          bind:click="goto"
+          data-title="{{ item.name }}"
+          data-url="{{ item.url }}"
+          text="{{ item.name }}"
+          wx:for="{{ tab.items || tab.data }}"
+          wx:key="index"
+        >
+          <icon class="{{ item.icon }}" slot="icon" style="background-color:{{ item.bgcolor }}" />
+        </van-grid-item>
+      </van-grid>
+    </van-tab>
+  </van-tabs>
+
+  <!-- 网红医生 -->
+  <van-panel custom-class="docDiv" title="网红医生">
+    <view class="doctorDiv">
+      <view class="doctor" wx:for="{{ docList }}" wx:key="index">
+        <view class="doctorAvatar">
+          <image lazy-load mode="aspectFit" src="{{ item.docAvatar }}" />
+        </view>
+        <view class="docName">{{ item.docName }}</view>
+        <view class="typeName">{{ item.docType }}</view>
+        <button bindtap="advisory" data-id="{{ item.id }}" size="mini" type="primary">咨询</button>
+      </view>
+    </view>
+  </van-panel>
+
+  <!-- 新闻模块 -->
+  <!-- <view class="newsDiv">
+    <van-cell is-link url="/pages/news/list" value="更多">
+      <view slot="title">
+        <view class="van-cell-text">医院新闻</view>
+      </view>
+    </van-cell>
+    <view bindtap="toNewsDetails" class="news" data-id="{{ item.id }}" wx:for="{{ newsList }}" wx:key="index">
+      <view class="imageDiv">
+        <image class="image" src="{{ item.imageUrl }}" />
+      </view>
+      <view class="textDiv">
+        <view class="title">{{ item.title }}</view>
+        <view class="infoDiv">
+          {{ item.editDate }}
+          <span class="read">{{ item.readTimes }}阅</span>
+        </view>
+      </view>
+    </view>
+  </view>-->
+
+  <!-- 版权信息 -->
+  <view class="copyright">版权所有：柳州市工人医院，中国移动广西分公司</view>
+  <view class="copyright">技术支持：广西和湛科技有限公司</view>
+</scroll-view>
+
+<van-tabbar active="{{ tabbarActive }}" active-color="#3E697A" bind:change="tabbarChange" fixed="{{ false }}">
+  <van-tabbar-item name="home">
+    <icon class="iconfont icon-home-o" slot="icon" />
+    <icon class="iconfont icon-home" slot="icon-active" />首页
+  </van-tabbar-item>
+  <van-tabbar-item name="im">
+    <icon class="iconfont icon-zxzx" slot="icon" />
+    <icon class="iconfont icon-zxzx" slot="icon-active" />在线咨询
+  </van-tabbar-item>
+  <van-tabbar-item name="user">
+    <icon class="iconfont icon-user-o" slot="icon" />
+    <icon class="iconfont icon-user" slot="icon-active" />个人中心
+  </van-tabbar-item>
+</van-tabbar>
+
+<van-popup
+  bind:close="popupUserClose"
+  closeable
+  custom-style="height: 100%;width: 100%;"
+  duration="{{ 260 }}"
+  position="bottom"
+  show="{{ popupUser }}"
+  z-index="{{ 100001 }}"
+>
+  <van-grid border="{{ false }}" class="user" column-num="2" square use-slot>
+    <van-grid-item bindtap="goto" data-url="patient">
+      <icon class="iconfont icon-jiuzhenka" slot="icon" />
+      <view slot="text">健康卡管理</view>
+    </van-grid-item>
+    <van-grid-item bindtap="goto" data-url="answer">
+      <icon class="iconfont icon-question-answer" slot="icon" />
+      <view slot="text">常见问题</view>
+    </van-grid-item>
+  </van-grid>
+</van-popup>
+
+<van-popup
+  bind:close="popupAuthClose"
+  closeable
+  custom-style="height: 100%"
+  duration="{{ 260 }}"
+  position="bottom"
+  show="{{ popupAuth }}"
+  z-index="{{ 100001 }}"
+>
+  <view class="auth">
+    <view class="avatar">
+      <icon class="iconfont icon-wechat" slot="icon" />
+    </view>
+    <view class="tips upgrade" wx:if="{{ !canIUseGetUserInfo }}">请升级微信版本</view>
+    <view class="tips" wx:if="{{ canIUseGetUserInfo }}">申请获取以下权限</view>
+    <view class="tips" wx:if="{{ canIUseGetUserInfo }}">获得你的公开信息(昵称，头像等)</view>
+    <button
+      bindgetuserinfo="bindGetUserInfo"
+      disabled="{{ authing }}"
+      open-type="getUserInfo"
+      type="primary"
+      wx:if="{{ canIUseGetUserInfo }}"
+    >授权登录</button>
+  </view>
+</van-popup>
+
+<van-dialog
+  class="dialog-qrcode"
+  closeOnClickOverlay
+  confirmButtonText="关闭"
+  show="{{ showQRCode }}"
+  title="柳州市健康卡【{{ patientSelected.name }}】"
+  use-slot
+>
+  <image src="{{ qrcodeURL }}" />
+</van-dialog>

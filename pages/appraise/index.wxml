@@ -1,0 +1,207 @@
+<!--pages/appraise/index.wxml-->
+<view class="page">
+  <van-tabs active="{{ tabActive }}" bind:change="tabChange" color="#3E697A" line-width="{{ minHW * 0.22 }}" sticky>
+    <van-tab
+      class="{{ tabActive === index && 'tab-active' || ''}}"
+      title="{{ item }}"
+      wx:for="{{ tabs }}"
+      wx:key="index"
+    >
+      <!-- 意见或建议 -->
+      <view class="content" wx:if="{{ tabActive === 0 }}">
+        <view class="tips">意见是金，建议是宝，您的意见是我们坚持改进的动力！</view>
+
+        <view class="radio-group">
+          评价类型：
+          <van-radio-group bind:change="radioChange" value="{{ radioChecked }}">
+            <van-radio checked-color="#3E697A" name="1">住院</van-radio>
+            <van-radio checked-color="#3E697A" name="2">门诊</van-radio>
+            <van-radio checked-color="#3E697A" name="3">体检</van-radio>
+          </van-radio-group>
+        </view>
+
+        <textarea
+          bindinput="inputOpinion"
+          maxlength="300"
+          placeholder="输入内容（300字以内）"
+          placeholder-class="textarea-placeholder"
+          value="{{delcontent}}"
+        />
+
+        <view class="pictures">
+          <icon bindtap="chooseImage" class="iconfont icon-camera" />
+        </view>
+        <van-row gutter="5" style="margin-top:20rpx;">
+          <van-col wx:for="{{imageUrl}}" wx:for-item="url" wx:key="index">
+            <view class="imageView">
+              <image bindtap="previewImage" class="image" data-index="{{index}}" src="{{url}}" />
+              <van-icon bindtap="delImage" class="delbtn" data-index="{{index}}" name="cross" />
+            </view>
+          </van-col>
+        </van-row>
+        <van-cell-group class="input-group">
+          <van-field bind:change="inputName" clearable placeholder="请输入您的姓名（必填）" required value="{{delcontent}}" />
+          <van-field
+            bind:change="inputphoneNumber"
+            clearable
+            placeholder="请输入您的电话（必填）"
+            required
+            value="{{delcontent}}"
+          />
+        </van-cell-group>
+
+        <view class="tips">您的联系方式很重要，以便我们及时将处理结果反馈给您！</view>
+
+        <view class="actions">
+          <button bindtap="subOpinion" type="primary">提交</button>
+        </view>
+      </view>
+      <!-- 投诉 -->
+      <view class="content" wx:if="{{ tabActive === 1 }}">
+        <view class="tips">投诉是金，您的投诉是我们持续改进的动力！</view>
+
+        <view class="radio-group">
+          评价类型：
+          <van-radio-group bind:change="radioChange" value="{{ radioChecked }}">
+            <van-radio checked-color="#3E697A" name="1">住院</van-radio>
+            <van-radio checked-color="#3E697A" name="2">门诊</van-radio>
+            <van-radio checked-color="#3E697A" name="3">体检</van-radio>
+          </van-radio-group>
+        </view>
+
+        <textarea
+          bindinput="inputcomplaintText"
+          maxlength="300"
+          placeholder="输入内容（300字以内）"
+          placeholder-class="textarea-placeholder"
+          value="{{delcontent}}"
+        />
+
+        <view class="pictures">
+          <icon bindtap="chooseImage" class="iconfont icon-camera" />
+        </view>
+        <van-row gutter="5" style="margin-top:20rpx;">
+          <van-col wx:for="{{imageUrl}}" wx:for-item="url" wx:key="index">
+            <view class="imageView">
+              <image bindtap="previewImage" class="image" data-index="{{index}}" src="{{url}}" />
+              <van-icon bindtap="delImage" class="delbtn" data-index="{{index}}" name="cross" />
+            </view>
+          </van-col>
+        </van-row>
+
+        <van-cell-group class="input-group">
+          <van-field bind:change="inputdoctorName" clearable placeholder="请输入投诉对象（必填）" required value="{{delcontent}}" />
+          <van-field bind:change="inputdoctorDept" clearable placeholder="请输入所属科室（必填）" required value="{{delcontent}}" />
+          <van-field bind:change="inputName" clearable placeholder="请输入您的姓名（必填）" required value="{{delcontent}}" />
+          <van-field
+            bind:change="inputphoneNumber"
+            clearable
+            placeholder="请输入您的电话（必填）"
+            required
+            value="{{delcontent}}"
+          />
+        </van-cell-group>
+
+        <view class="tips">您的联系方式很重要，以便我们及时将处理结果反馈给您！</view>
+
+        <view class="actions">
+          <button bindtap="subcomplaint" type="primary">提交</button>
+        </view>
+      </view>
+      <!-- 表扬 -->
+      <view class="content" wx:if="{{ tabActive === 2 }}">
+        <view class="tips">您的表扬是对我们工作最大的肯定！</view>
+
+        <view class="radio-group">
+          评价类型：
+          <van-radio-group bind:change="radioChange" value="{{ radioChecked }}">
+            <van-radio checked-color="#3E697A" name="1">住院</van-radio>
+            <van-radio checked-color="#3E697A" name="2">门诊</van-radio>
+            <van-radio checked-color="#3E697A" name="3">体检</van-radio>
+          </van-radio-group>
+        </view>
+
+        <textarea
+          bindinput="inputPraiseText"
+          maxlength="300"
+          placeholder="输入内容（300字以内）"
+          placeholder-class="textarea-placeholder"
+          value="{{delcontent}}"
+        />
+
+        <!-- <view class="pictures">
+          <icon class="iconfont icon-camera" />
+        </view>-->
+        <view class="pictures">
+          <icon bindtap="chooseImage" class="iconfont icon-camera" />
+        </view>
+        <van-row gutter="5" style="margin-top:20rpx;">
+          <van-col wx:for="{{imageUrl}}" wx:for-item="url" wx:key="index">
+            <view class="imageView">
+              <image bindtap="previewImage" class="image" data-index="{{index}}" src="{{url}}" />
+              <van-icon bindtap="delImage" class="delbtn" data-index="{{index}}" name="cross" />
+            </view>
+          </van-col>
+        </van-row>
+
+        <van-cell-group class="input-group">
+          <van-field bind:change="inputdoctorName" clearable placeholder="请输入表扬对象（必填）" required value="{{delcontent}}" />
+          <van-field bind:change="inputdoctorDept" clearable placeholder="请输入所属科室（必填）" required value="{{delcontent}}" />
+          <van-field bind:change="inputName" clearable placeholder="请输入您的姓名（必填）" required value="{{delcontent}}" />
+          <van-field
+            bind:change="inputphoneNumber"
+            clearable
+            placeholder="请输入您的电话（必填）"
+            required
+            value="{{delcontent}}"
+          />
+        </van-cell-group>
+
+        <view class="tips">您的联系方式很重要，以便我们及时将处理结果反馈给您！</view>
+
+        <view class="actions">
+          <button bindtap="subPraise" type="primary">提交</button>
+        </view>
+      </view>
+      <!-- 调查满意度 -->
+      <view class="content" wx:if="{{ tabActive === 3 }}">
+        <view class="tips">意见是金，建议是宝，您的意见是我们坚持改进的动力！</view>
+        <view class="radio-group">
+          评价类型：
+          <van-radio-group bind:change="radioChange" value="{{ radioChecked }}">
+            <van-radio checked-color="#3E697A" name="1">住院</van-radio>
+            <van-radio checked-color="#3E697A" name="2">门诊</van-radio>
+            <van-radio checked-color="#3E697A" name="3">体检</van-radio>
+          </van-radio-group>
+        </view>
+
+        <!-- <view class="rate-item" wx:for="{{ rateItems }}" wx:key="index">
+          <view>{{ (index + 1) + '.' + item.title }}</view>
+          <van-rate bind:change="rateChange" data-index="{{ index }}" size="18" value="{{ item.rate }}" />
+          <view>{{ rateText[item.rate] }}</view>
+        </view>-->
+
+        <view class="rate-item" wx:for="{{ rateItems[radioChecked] }}" wx:key="index">
+          <view>{{ item.questionName }}</view>
+          <van-rate bind:change="rateChange" data-index="{{ index }}" size="18" value="{{ item.rate }}" />
+          <view>{{ rateText[item.rate] }}</view>
+        </view>
+
+        <view class="input-textarea">
+          您还可以文字评价哦
+          <textarea
+            bindinput="inputSatisfactionText"
+            maxlength="200"
+            placeholder="输入内容（200字以内）"
+            placeholder-class="textarea-placeholder"
+            value="{{delcontent}}"
+          />
+        </view>
+
+        <view class="actions">
+          <button bindtap="subEvaluate" type="primary">提交</button>
+        </view>
+      </view>
+    </van-tab>
+  </van-tabs>
+</view>

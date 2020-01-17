@@ -1,0 +1,120 @@
+/* pages/register/record.wxss */
+.van-panel {
+  margin: 30rpx;
+  box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.05);
+}
+.van-panel .van-cell:after {
+  left: 0;
+}
+.van-panel .van-cell__value {
+  color: #3e697a;
+}
+.van-panel .van-cell__title,
+.van-panel view.title,
+.van-panel view.title view {
+  font-size: 32rpx;
+}
+.van-panel view.title {
+  display: flex;
+  align-items: center;
+}
+.van-panel view.title view {
+  margin-left: 20rpx;
+}
+.van-panel view.empty {
+  text-align: center;
+  color: #888;
+}
+
+.van-panel view.label {
+  margin-top: 20rpx;
+  color: #888;
+}
+.van-panel view.label + .label {
+  margin-top: 0;
+}
+
+.van-panel__content {
+  position: relative;
+  padding: 30rpx;
+}
+.van-panel__content:before,
+.van-panel__content:after {
+  content: '';
+  position: absolute;
+  bottom: 40rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background-color: #f1f4f5;
+  border-radius: 50%;
+}
+.van-panel__content:before {
+  left: -20rpx;
+}
+.van-panel__content:after {
+  right: -20rpx;
+}
+
+.value-class {
+  flex: none !important;
+}
+
+/* pages/payment/index.wxss */
+view.van-cell__title,
+view.van-cell__value {
+  font-size: 32rpx;
+}
+.patient view.van-cell__value,
+.patient view.van-icon {
+  color: #3e697a;
+}
+
+/* tips */
+view.tips {
+  padding: 20rpx 30rpx;
+  color: #666;
+}
+
+/* tab */
+view.van-tabs {
+  /* margin-top: 40rpx; */
+}
+view.van-tabs view.van-cell__title {
+  font-size: 36rpx;
+}
+view.van-tabs view.datetime {
+  margin-top: 10rpx;
+}
+view.van-tab--active {
+  color: #3e697a;
+}
+view.van-cell__value {
+  flex: 0 0 auto;
+}
+
+van-icon.van-cell__right-icon-wrap {
+  height: auto;
+}
+.cell {
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  padding: 18rpx 0;
+}
+.cell text {
+  font-size: 32rpx;
+}
+.cell text:nth-child(1) {
+  color: #999;
+}
+.options {
+  margin: 30rpx;
+  padding-top: 40rpx;
+}
+.options .tip {
+  margin-top: 20rpx;
+  font-size: 32rpx;
+  vertical-align: middle;
+  display: flex;
+  align-items: baseline;
+}

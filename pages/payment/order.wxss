@@ -1,0 +1,75 @@
+/* pages/payment/order.wxss */
+
+view.van-cell__title {
+  flex: 0 0 auto;
+  color: #666;
+}
+view.van-cell__value {
+  color: #333;
+}
+view.balance {
+  color: #f44;
+}
+
+/* actions */
+.actions {
+  padding: 80rpx 30rpx 30rpx;
+}
+
+.van-collapse-item::after {
+  position: absolute;
+  box-sizing: border-box;
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  content: ' ';
+  pointer-events: none;
+  top: auto;
+  right: 0;
+  bottom: 0;
+  left: 32rpx;
+  border-bottom: 1px solid #ebedf0;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+.van-hairline--top-bottom::after {
+  display: none;
+}
+.van-collapse-item > view > view {
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  background-color: #f1f4f5;
+}
+
+van-row van-col:last-child {
+  text-align: right;
+}
+.list view.van-row {
+  padding: 10rpx 30rpx;
+}
+view.van-dialog__header {
+  height: 100rpx;
+  line-height: 100rpx;
+  padding-top: 0;
+}
+
+.dialog-local {
+  text-align: center;
+  color: #888;
+}
+.dialog-items .van-cell-group {
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
+.dialog-items .van-cell-group:after,
+.dialog-items view.van-cell:after {
+  display: none;
+}
+.dialog-items view.van-cell__value {
+  flex: 0 0 auto;
+}
+van-dialog button .van-button__text {
+  color: #3e697a;
+}
+.pending {
+  color: green;
+}

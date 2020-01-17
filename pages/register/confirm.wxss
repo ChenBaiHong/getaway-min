@@ -1,0 +1,108 @@
+/* pages/register/confirm.wxss */
+
+/* tips */
+view.tips,
+view.tips van-icon {
+  display: flex;
+  align-items: center;
+}
+view.tips {
+  padding: 20rpx 30rpx;
+  color: #666;
+}
+view.tips van-icon {
+  margin-right: 10rpx;
+  color: #3e697a;
+}
+
+van-radio-group view.van-cell {
+  align-items: center;
+}
+van-radio-group view.van-cell__title {
+  margin-left: 10rpx;
+}
+
+/* actions */
+.actions {
+  padding: 60rpx 30rpx;
+}
+
+/* pages/register/schedule.wxss */
+/* tab */
+view.van-tab--active {
+  color: #3e697a;
+}
+
+/* tips */
+view.tips,
+view.tips van-icon {
+  display: flex;
+  align-items: center;
+}
+view.tips {
+  padding: 20rpx 30rpx;
+  color: #666;
+}
+view.tips van-icon {
+  margin-right: 10rpx;
+  color: #3e697a;
+}
+
+/* cell */
+view.doctor-title,
+view.doctor-value {
+  display: flex;
+  flex-direction: column;
+}
+
+view.name {
+  font-size: 36rpx;
+}
+
+view.title,
+view.cost {
+  margin-top: 20rpx;
+  color: #999;
+}
+
+view.has-duration {
+  color: #3e697a;
+}
+
+image.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 20rpx;
+}
+
+.weui-demo-dialog {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+.weui-half-screen-dialog {
+  transition: all 0.3s;
+  transform: translateY(100%);
+}
+.weui-demo-dialog_show {
+  visibility: visible;
+  opacity: 1;
+}
+.weui-demo-dialog_show .weui-half-screen-dialog {
+  transform: translateY(0);
+}
+
+.weui-half-screen-dialog .cu-dialog {
+  width: 100%;
+}
+
+.card-list {
+  min-height: 60rpx;
+}
+
+.value-class {
+  flex: none !important;
+}
+.retract-cell .van-cell__value {
+  text-align: center;
+}

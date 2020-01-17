@@ -1,0 +1,26 @@
+<!--pages/register/detail.wxml-->
+<van-cell-group>
+  <van-cell class="status" title="状态">
+    <text class="text-success">{{ info.statusStr }}</text>
+  </van-cell>
+  <van-cell class="explain" label="就诊人信息" />
+  <van-cell title="就诊人" value="{{ info.patientName }}" />
+  <van-cell title="身份证号码" value="{{ patientSelected.idcardText }}" />
+  <van-cell title="手机" value="{{ patientSelected.mobileText }}" />
+  <van-cell class="explain" label="预约信息" />
+  <van-cell title="订单编号" value="{{ info.reservationId }}" />
+  <van-cell title="就诊序号" value="{{ info.myNumber }}" wx:if="{{info.status===3}}" />
+  <van-cell title="前方人数" value="{{ info.waitNum }}" wx:if="{{info.status===3}}" />
+  <van-cell title="医院" value="{{ info.hospName }}" />
+  <van-cell title="地址" value="{{ info.hospAddr }}" />
+  <van-cell title="科室" value="{{ info.deptName }}" />
+  <van-cell title="医生" value="{{ info.docName }}" />
+  <van-cell title="时间" value="{{ info.dateTime }}" />
+  <van-cell title="挂号费" value="{{ info.fee }}" />
+  <van-cell class="explain" />
+</van-cell-group>
+<view class="actions">
+  <button bindtap="cancel" type="warn" wx:if="{{info.status===1&&isGreaterToday}}" disabled="{{disabled}}">取消预约</button>
+  <button bindtap="cancel" type="warn" wx:if="{{info.status===3&&isGreaterToday}}" disabled="{{disabled}}">取消挂号</button>
+  <button bindtap="takeReserv" type="primary" wx:if="{{info.status===1&&isToday}}" disabled="{{disabled}}">取号</button>
+</view>

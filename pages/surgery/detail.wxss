@@ -1,0 +1,201 @@
+/* pages/surgery/index.wxss */
+.surgery {
+  padding: 20rpx 32rpx;
+}
+.surgery .patientInfo {
+  border-radius: 15rpx;
+  box-shadow: 0 2rpx 5rpx #c7c5c5;
+  padding: 20rpx;
+  position: relative;
+}
+.shareBtn {
+  padding: 0 !important;
+  background: transparent;
+  /* position: absolute;
+  right: 32rpx;
+  top: 0; */
+  width: 52rpx;
+  min-width: 52rpx;
+  height: 52rpx;
+  min-height: 52rpx;
+  margin: 0;
+}
+.shareBtn::after {
+  display: none;
+}
+.shareBtn .icon {
+  line-height: 40rpx;
+  font-size: 40rpx;
+}
+.img {
+  --dialog-width: 640rpx;
+  --dialog-small-screen-width: calc(var(--dialog-width) * 0.9);
+
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.img image {
+  flex: 0 0 auto;
+  width: calc(var(--dialog-width) - 64rpx) !important;
+  height: calc(var(--dialog-width) - 64rpx) !important;
+  margin: 16rpx auto;
+}
+@media (max-width: 321px) {
+  .img image {
+    width: calc(var(--dialog-small-screen-width) - 64rpx) !important;
+    height: calc(var(--dialog-small-screen-width) - 64rpx) !important;
+  }
+}
+
+.patientInfo view {
+  font-size: 28rpx;
+  /* padding: 10rpx; */
+  color: #666;
+}
+.patientInfo .van-row {
+  line-height: 48rpx;
+}
+view.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 32rpx;
+  color: #333;
+}
+view.title.surgeryInfo {
+  padding: 0 12rpx;
+}
+.surgeryInfo {
+  margin-top: 20rpx;
+}
+
+.progress {
+  background: url('https://image.lzihospital.com/portal/surgery_bg.png') no-repeat 0 0/100%;
+  width: calc(100vw - 40rpx);
+  height: calc(1222 / 750 * (100vw - 40rpx));
+  display: flex;
+  flex-wrap: wrap;
+}
+.progressInfo {
+  position: relative;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.complete {
+  border: 15rpx solid rgb(66, 201, 35);
+}
+.complete::before {
+  border-color: rgb(66, 201, 35) transparent transparent transparent;
+}
+.complete::after {
+  background: rgb(66, 201, 35);
+}
+.processing {
+  border: 15rpx solid rgb(211, 35, 85);
+}
+.processing::before {
+  border-color: rgb(211, 35, 85) transparent transparent transparent;
+}
+.processing::after {
+  background: rgb(211, 35, 85);
+}
+.pending {
+  border: 15rpx solid rgb(153, 153, 153);
+}
+.pending::before {
+  border-color: rgb(153, 153, 153) transparent transparent transparent;
+}
+.pending::after {
+  background: rgb(153, 153, 153);
+}
+.progressInfo::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0rpx;
+  bottom: -100rpx;
+  left: 43rpx;
+  border-style: solid;
+  border-width: 50rpx 10rpx 50rpx 10rpx;
+}
+.progressInfo::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: -55rpx;
+  left: 43rpx;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  border: solid 5rpx rgb(216, 216, 216);
+  z-index: -1;
+}
+.progressInfo view {
+  font-size: 23rpx;
+  color: #333;
+  text-align: center;
+}
+/* 上边距 */
+.progress > view:first-child {
+  margin-top: 8rpx;
+  margin-left: calc((100vw) * 0.05);
+}
+.progress > view:nth-child(2) {
+  margin-top: 240rpx;
+  margin-left: 0;
+}
+.progress > view:nth-child(3) {
+  margin-top: 240rpx;
+  margin-left: calc((100vw) * 0.21);
+}
+.progress > view:nth-child(4) {
+  margin-top: 55rpx;
+  margin-left: calc((100vw) * 0.23);
+}
+.progress > view:nth-child(5) {
+  margin-top: 55rpx;
+  margin-left: calc((100vw) * 0.2);
+}
+.progress > view:nth-child(6) {
+  margin-top: 45rpx;
+  margin-left: calc((100vw) * 0.23);
+}
+.progress > view:nth-child(7) {
+  margin-top: 45rpx;
+  margin-left: calc((100vw) * 0.2);
+}
+.progress > view:nth-child(8) {
+  margin-top: 45rpx;
+  margin-left: calc((100vw) * 0.7);
+}
+
+/* 左边距 */
+/* .surgeryInfo > view .progressInfo {
+  margin-left: calc((100vw - 420rpx) / 3);
+}
+.surgeryInfo > view:first-child .progressInfo:nth-of-type(1) {
+  margin-left: calc((100vw * (-100 / 375)));
+}
+.surgeryInfo > view:first-child .progressInfo:nth-of-type(2) {
+  margin-left: calc((100vw * (75 / 375)));
+}
+.surgeryInfo > view:nth-child(2) .progressInfo:nth-of-type(1) {
+  margin-left: calc((100vw * (-50 / 375)));
+}
+.surgeryInfo > view:nth-child(3) .progressInfo:nth-of-type(1) {
+  margin-left: calc((100vw * (-50 / 375)));
+}
+.surgeryInfo > view:nth-child(4) .progressInfo:nth-of-type(1) {
+  margin-left: calc((100vw * (-50 / 375)));
+}
+.surgeryInfo > view:nth-child(5) .progressInfo:nth-of-type(1) {
+  margin-left: calc((100vw * (120 / 375)));
+} */

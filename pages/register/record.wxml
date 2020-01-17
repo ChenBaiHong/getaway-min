@@ -1,0 +1,20 @@
+<!--pages/register/record.wxml-->
+<patientcard bind:change="cardChange" />
+<scroll-view scroll-y>
+  <van-panel bindtap="goto" data-item="{{ item }}" wx:for="{{ list }}" wx:key="index">
+    <van-cell is-link slot="header" title="{{ item.patientName }}">
+      <text style="color:#3E697A;font-size:24rpx">{{item.statusStr}}</text>
+    </van-cell>
+    <view class="title">
+      {{ item.hospName }}
+      <view>{{ item.deptName }}</view>
+    </view>
+    <view class="title">
+      {{ item.docName }}
+      <view>{{ item.docTitle }}</view>
+    </view>
+    <view class="label">{{ item.appointText }}</view>
+    <view class="label">{{ item.fee }}元</view>
+  </van-panel>
+  <empty wx:if="{{ loaded && !list.length }}"></empty>
+</scroll-view>

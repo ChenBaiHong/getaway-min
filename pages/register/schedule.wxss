@@ -1,0 +1,54 @@
+/* pages/register/schedule.wxss */
+/* tab */
+view.van-tab--active {
+  color: #3e697a;
+}
+
+/* tips */
+view.tips,
+view.tips van-icon {
+  display: flex;
+  align-items: center;
+}
+view.tips {
+  padding: 20rpx 30rpx;
+  color: #666;
+}
+view.tips van-icon {
+  margin-right: 10rpx;
+  color: #3e697a;
+}
+
+/* cell */
+view.doctor-title,
+view.doctor-value {
+  display: flex;
+  flex-direction: column;
+}
+
+view.name {
+  font-size: 36rpx;
+}
+
+view.title,
+view.cost {
+  margin-top: 20rpx;
+  color: #999;
+}
+
+view.has-duration {
+  color: #3e697a;
+}
+
+image.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 20rpx;
+}
+
+view.van-cell {
+  align-items: center;
+}
+.van-sticky {
+  height: 44px;
+}

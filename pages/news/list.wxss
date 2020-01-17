@@ -1,0 +1,56 @@
+/* pages/news/list.wxss */
+
+/* 新闻模块 */
+.newsDiv {
+  max-width: 100%;
+  background: #fff;
+}
+.newsDiv .van-cell:after {
+  right: 30rpx;
+  left: 30rpx;
+}
+.news {
+  width: calc(100vw - 60rpx);
+  border-bottom: 1px solid #eee;
+  padding: 20rpx 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+.news .imageDiv {
+  width: 120rpx;
+  height: 120rpx;
+}
+.news .imageDiv .image {
+  width: 120rpx;
+  height: 120rpx;
+}
+.news .textDiv {
+  padding-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+.news .textDiv .title {
+  width: calc(100vw - 210rpx);
+  font-size: calc((100vw - 210rpx) / 20);
+  height: 80rpx;
+  color: rgb(88, 88, 88);
+  line-height: 40rpx;
+}
+.news .textDiv .infoDiv {
+  font-size: 24rpx;
+  color: #a1a6a8;
+  line-height: 40rpx;
+}
+.news .textDiv .infoDiv .date {
+  display: block;
+  float: right;
+  margin-right: 30rpx;
+}
+.news .textDiv .infoDiv .read {
+  display: block;
+  float: right;
+  margin-right: 30rpx;
+}

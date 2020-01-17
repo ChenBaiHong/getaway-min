@@ -1,0 +1,37 @@
+<patientcard bind:change="cardChange" />
+
+<scroll-view scroll-y>
+  <view class="tips">
+    <van-icon name="info-o" />当日挂号不可取消，请确认就诊时间无误再操作
+  </view>
+  <van-cell-group>
+    <van-cell title="医院" value="{{ doctorInfo.hospName }}" />
+    <van-cell title="科室" value="{{ doctorInfo.deptName }}" />
+    <van-cell title="医生" value="{{ doctorInfo.docName }}" />
+    <van-cell title="费用" value="{{info.fee}}元" />
+    <van-cell title="时间" value="{{date}} {{amPm ==='1'?'上午':'下午'}}" />
+    <van-cell title="就诊人" value="{{ patientSelected.name }}" />
+  </van-cell-group>
+  <view class="tips">确定具体时间段</view>
+  <van-radio-group value="{{ radio }}">
+    <van-cell-group>
+      <van-cell
+        bind:click="onClick"
+        clickable
+        data-index="{{index}}"
+        data-item="{{item}}"
+        data-name="{{ item.ReservationId }}"
+        title="{{ item.time }}"
+        wx:for="{{ source }}"
+        wx:if="{{(!isRetract||(index<=currentIndex))&&(item.AmPm == schedule.AmPm)}}"
+        wx:key="ReservationId"
+      >
+        <van-radio checked-color="#3E697A" disabled="{{item.State==='1'}}" name="{{ item.reservationId }}" slot="icon" />
+      </van-cell>
+    </van-cell-group>
+  </van-radio-group>
+  <van-cell bindtap="retractSource" class="retract-cell" wx:if="{{ source.length }}">{{isRetract?'展开':'收起'}}</van-cell>
+  <view class="actions">
+    <button bindtap="submit" disabled="{{!radio || disabled}}" type="primary">{{isToday?'挂号':'预约挂号'}}</button>
+  </view>
+</scroll-view>

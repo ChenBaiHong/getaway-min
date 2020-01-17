@@ -1,0 +1,54 @@
+<!-- pages/payment/order.wxml -->
+<view>
+  <van-cell-group>
+    <!-- <van-cell title="项目" value="{{ billName }}" /> -->
+    <van-cell title="就诊人" value="{{ patientName }}" />
+    <van-cell title="就诊号：" value="{{ outpatientNum }}"></van-cell>
+    <van-cell title="年龄：" value="{{ age }}"></van-cell>
+    <van-cell title="手机号：" value="{{ mobile }}"></van-cell>
+    <van-cell title="医生：" value="{{ docName }}"></van-cell>
+    <van-cell title="医疗机构：" value="{{ hospName }}"></van-cell>
+    <!-- <van-cell title="就诊类型：" value="{{ visitType }}"></van-cell> -->
+    <van-cell title="科室：" value="{{ departmentName }}"></van-cell>
+    <van-cell-group class="items" wx:if="{{ itemVoList.length && billType === 1 && payStatus === 1 }}">
+      <van-cell bindtap="openDialog" is-link title="药品清单" value="查看药品清单"></van-cell>
+    </van-cell-group>
+    <van-cell-group class="items" wx:if="{{ itemVoList.length && billType === 2 }}">
+      <van-cell bindtap="openDialog" is-link title="医嘱清单" value="查看医嘱清单"></van-cell>
+    </van-cell-group>
+
+    <van-cell title="取药窗口" value="{{ pharmacyNum }}" wx:if="{{ billType === 1 && payStatus === 1 }}"></van-cell>
+    <van-cell title="取药状态" value="{{ isTakenStr }}" wx:if="{{ billType === 1 && payStatus === 1 }}"></van-cell>
+    <van-cell title="缴费金额：" value="{{ feeText }}"></van-cell>
+    <van-cell title="缴费时间：" value="{{ paytime }}" wx:if="{{ payStatus === 1 }}"></van-cell>
+  </van-cell-group>
+  <view class="actions">
+    <button bindtap="toPay" disabled="{{ loading }}" type="primary" wx:if="{{ payStatus === 0 && fee }}">微信支付</button>
+  </view>
+  <van-dialog
+    close-on-click-overlay
+    confirm-button-text="知道了"
+    show="{{ showItems }}"
+    title="{{billType === 1?'药品清单':'医嘱清单'}}"
+    use-slot
+  >
+    <van-row class="list" wx:if="{{ billType === 1 && payStatus === 1 }}">
+      <van-col span="12">药品清单</van-col>
+      <van-col span="4">单价</van-col>
+      <van-col span="4">数量</van-col>
+      <van-col span="4">价格</van-col>
+    </van-row>
+    <van-row class="list" wx:if="{{ billType === 2 }}">
+      <van-col span="12">项目名称</van-col>
+      <van-col span="4">单价</van-col>
+      <van-col span="4">数量</van-col>
+      <van-col span="4">价格</van-col>
+    </van-row>
+    <van-row class="list {{item.isTaken===0 ? '': billType === 1 && 'pending'}}" wx:for="{{itemVoList}}" wx:key="index">
+      <van-col span="12">{{item.itemName}}</van-col>
+      <van-col span="4">{{item.price}}</van-col>
+      <van-col span="4">{{ item.quantity }}{{ item.unit }}</van-col>
+      <van-col span="4">￥{{item.fee||0}}</van-col>
+    </van-row>
+  </van-dialog>
+</view>

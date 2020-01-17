@@ -1,0 +1,181 @@
+<patientcard bind:change="cardChange" />
+
+<scroll-view scroll-y>
+  <view class="content" wx:for="{{ hinfo.inpatientRecordList }}" wx:key="index">
+    <!-- 开启单号 -->
+    <form bindsubmit="changePersonInfo" wx:if="{{ item.state===2 }}">
+      <van-panel
+        custom-class="panel"
+        desc="您有入院手续需要办理，请确认以下入院信息"
+        title="{{ hinfo.patientName && hinfo.patientName + '，您好！' || '' }}"
+        use-footer-slot
+      >
+        <van-cell-group>
+          <van-field disabled input-align="right" label="姓名" value="{{ patientSelected.name }}" />
+          <van-field
+            disabled
+            input-align="right"
+            label="年龄"
+            value="{{ patientSelected.age }}/{{patientSelected.sexText }}"
+          />
+          <van-field disabled input-align="right" label="就诊卡号" value="{{ patientSelected.epcNum }}" />
+          <van-field disabled input-align="right" label="住院费别" value="{{ hinfo.rateType }}" />
+          <van-field disabled input-align="right" label="电话" value="{{ patientSelected.mobile }}" />
+
+          <view class="van-cell cell-textarea">
+            <view>常住地址</view>
+            <textarea class="textarea" height="80rpx" name="address" placeholder="请输入常住地址" />
+          </view>
+          <van-field
+            bindtap="relationOpen"
+            disabled
+            icon="arrow-down"
+            input-align="right"
+            label="与患者关系"
+            placeholder="选择关系"
+            value="{{ guardianRelation.lineName }}"
+          />
+
+          <view class="input-wrap">
+            <view class="label">联系人姓名</view>
+            <view class="input">
+              <input name="mobile" placeholder="请输入联系人姓名" type="text" />
+            </view>
+          </view>
+          <view class="input-wrap">
+            <view class="label">联系人电话</view>
+            <view class="input">
+              <input name="guardianPhoneNum" placeholder="请输入联系人电话" type="text" />
+            </view>
+          </view>
+
+          <view class="input-wrap">
+            <view class="label">引导员编号</view>
+            <view class="input">
+              <input name="userId" placeholder="请输入引导员编号" type="text" />
+            </view>
+          </view>
+        </van-cell-group>
+        <view class="btn-wrap" slot="footer">
+          <button
+            bindtap="toPay"
+            class="button"
+            data-item="{{item}}"
+            disabled="{{payDisabled}}"
+            slot="footer"
+            style="margin-right:20rpx"
+            type="primary"
+          >确认入院</button>
+          <button class="button" disabled="{{changeInfoDisabled}}" formType="submit" type="primary">修改基本信息</button>
+        </view>
+      </van-panel>
+    </form>
+
+    <van-panel
+      custom-class="panel"
+      desc="您的入院手续已经办理成功，正在等待护士办理入科手续请耐心等待。"
+      title="{{ hinfo.patientName && hinfo.patientName + '，您好！' || '' }}"
+      use-footer-slot
+      wx:if="{{ item.state===3 }}"
+    >
+      <!-- 在院内 -->
+      <van-cell-group>
+        <van-field disabled input-align="right" label="住院号" value="{{ item.inpatientNum }}" />
+        <van-field disabled input-align="right" label="入院时间" value="{{ item.admissionTime }}" />
+        <van-field disabled input-align="right" label="姓名" value="{{ hinfo.patientName }}" />
+        <van-field disabled input-align="right" label="费别" value="{{ hinfo.rateType }}" />
+        <van-field disabled input-align="right" input-class="balance" label="押金余额" value="¥ {{ item.cash || 0 }}" />
+        <van-field disabled input-align="right" label="当前病区" value="{{ item.ward ||'--'}}" />
+        <van-field disabled input-align="right" label="主管医生" value="{{ item.doctor ||'--'}}" />
+      </van-cell-group>
+      <view class="actions" slot="footer">
+        <button bindtap="goto" class="button" data-tag="recharge" type="primary">押金充值</button>
+        <button
+          bindtap="goto"
+          class="button"
+          data-is-in-hospital="{{1}}"
+          data-tag="details"
+          data-visit-num="{{item.visitNum}}"
+          type="primary"
+        >日清单查询</button>
+      </view>
+    </van-panel>
+
+    <van-panel
+      custom-class="panel"
+      desc="以下是您的在院信息"
+      title="{{ hinfo.patientName && hinfo.patientName + '，您好！' || '' }}"
+      use-footer-slot
+      wx:if="{{ item.state===4 }}"
+    >
+      <!-- 在院内 -->
+      <van-cell-group>
+        <van-field disabled input-align="right" label="住院号" value="{{ item.inpatientNum }}" />
+        <van-field disabled input-align="right" label="入院时间" value="{{ item.admissionTime }}" />
+        <van-field disabled input-align="right" label="姓名" value="{{ hinfo.patientName }}" />
+        <van-field disabled input-align="right" label="费别" value="{{ hinfo.rateType }}" />
+        <van-field disabled input-align="right" input-class="balance" label="押金余额" value="¥ {{ item.cash || 0 }}" />
+        <van-field disabled input-align="right" label="当前病区" value="{{ item.ward }}" />
+        <van-field disabled input-align="right" label="主管医生" value="{{ item.doctor }}" />
+      </van-cell-group>
+      <view class="actions" slot="footer">
+        <button bindtap="goto" class="button" data-tag="recharge" type="primary">押金充值</button>
+        <button
+          bindtap="goto"
+          class="button"
+          data-is-in-hospital="{{1}}"
+          data-tag="details"
+          data-visit-num="{{item.visitNum}}"
+          type="primary"
+        >日清单查询</button>
+      </view>
+    </van-panel>
+
+    <van-collapse bind:change="onCollapseChange" value="{{ activeNames }}">
+      <van-collapse-item name="{{index}}" wx:if="{{item.state===9}}">
+        <view class="collapse-title" slot="title">
+          <view class="main-color">
+            <text class="font-bold">住院号：</text>
+            {{item.inpatientNum}}
+          </view>
+          <view class="main-color">(已出院)</view>
+        </view>
+        <van-cell-group class="cell">
+          <van-cell title="住院科室" value="{{item.admissionDepartment}}" />
+          <van-cell title="当前病区" value="{{ item.ward}}" />
+          <van-cell title="入院时间" value="{{item.admissionTime}}" />
+          <van-cell title="出院时间" value="{{item.leaveTime}}" />
+          <van-cell title="主管医生" value="{{item.doctor}}" />
+          <van-cell
+            bindtap="goto"
+            class="button"
+            data-is-in-hospital="{{0}}"
+            data-tag="details"
+            data-visit-num="{{item.visitNum}}"
+          >
+            <view class="main-color" slot="title">查看住院费用明细单</view>
+          </van-cell>
+          <van-cell bindtap="gotoDischarged" class="button" data-visit-num="{{item.visitNum}}">
+            <view class="main-color" slot="title">查看出院小结</view>
+          </van-cell>
+        </van-cell-group>
+      </van-collapse-item>
+    </van-collapse>
+  </view>
+  <view class="no-data" wx:if="{{ hinfo.inpatientRecordList && !hinfo.inpatientRecordList.length }}">
+    <van-icon name="comment-o" size="36px" />
+    <view>没有数据</view>
+  </view>
+</scroll-view>
+
+<!-- 与患者关系 -->
+<van-popup bind:close="relationClose" overlay position="bottom" show="{{ relationShow }}">
+  <van-picker
+    bind:cancel="relationClose"
+    bind:confirm="relationSelect"
+    columns="{{ relations }}"
+    show-toolbar
+    title="患者关系"
+    value-key="lineName"
+  />
+</van-popup>

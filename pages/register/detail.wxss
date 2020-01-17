@@ -1,0 +1,31 @@
+/* pages/register/detail.wxss */
+.actions {
+  padding: 30rpx 30rpx 60rpx 30rpx;
+}
+.actions button + button {
+  margin-top: 32rpx;
+}
+
+.status .van-cell:after {
+  display: none;
+}
+.status .van-cell__value {
+  color: #3e697a;
+}
+
+.explain .van-cell {
+  background-color: transparent;
+}
+.explain .van-cell__label {
+  font-size: 28rpx;
+}
+.explain .van-cell:after {
+  display: none;
+}
+
+.text-success {
+  color: #3e697a;
+}
+.text-warn {
+  color: #9f4949;
+}

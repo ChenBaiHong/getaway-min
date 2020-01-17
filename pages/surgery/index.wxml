@@ -1,0 +1,21 @@
+<!--pages/surgery/index.wxml-->
+<patientcard bind:change="cardChange" />
+
+<scroll-view scroll-y>
+  <view class="surgery" wx:if="{{ list.length }}">
+    <van-cell-group>
+      <van-cell
+        is-link
+        title="{{item.operationName}}"
+        url="/pages/surgery/detail?data={{item.patientId}},{{item.visitNum}},{{item.operationNum}}"
+        use-label-slot
+        wx:for="{{list}}"
+        wx:key="visitNum"
+      >
+        <view slot="label">科 室：{{item.departmentName}}</view>
+        <view class="time" slot="label">手术时间：{{item.operationDate}}</view>
+      </van-cell>
+    </van-cell-group>
+  </view>
+  <empty wx:else></empty>
+</scroll-view>

@@ -1,0 +1,17 @@
+<!--pages/news/list.wxml-->
+
+<!-- 新闻模块 -->
+<view class="newsDiv">
+  <view bindtap="toNewsDetails" class="news" data-id="{{ item.id }}" wx:for="{{ newsList }}" wx:key="index">
+    <view class="imageDiv">
+      <image class="image" src="{{ item.imageUrl }}" />
+    </view>
+    <view class="textDiv">
+      <view class="title">{{ item.title }}</view>
+      <view class="infoDiv">
+        <span class="read">{{ item.readTimes }}阅</span>
+        <span class="date">{{ item.editDate }}</span>
+      </view>
+    </view>
+  </view>
+</view>

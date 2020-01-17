@@ -1,0 +1,150 @@
+/**app.wxss**/
+
+@import '/assets/iconfont/iconfont.wxss';
+
+page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #f1f4f5;
+  color: #303133;
+  /* overflow: hidden; */
+}
+
+page > view,
+page > scroll-view {
+  flex: 1 1 auto;
+}
+page > patientcard {
+  position: relative;
+  z-index: 100000;
+  flex: 0 0 auto;
+  width: 100%;
+  height: 88rpx;
+  background-color: #3e697a;
+}
+page > patientcard + scroll-view {
+  flex: 1 1 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* empty */
+empty {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 auto;
+  min-height: calc(100% - 88rpx);
+  background: url('https://image.lzihospital.com/portal/empty3.png') 50% 25% no-repeat;
+  background-size: 50% auto;
+}
+empty:after {
+  content: '暂无数据';
+  font-size: 32rpx;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+view,
+view.van-cell {
+  font-size: 28rpx;
+}
+view.van-cell {
+  line-height: 48rpx;
+  padding: 20rpx 30rpx;
+}
+van-icon.van-cell__right-icon-wrap {
+  height: 48rpx;
+}
+
+van-cell > .van-cell:after {
+  border-bottom-color: #dedede;
+}
+
+/* button */
+page button {
+  font-size: 36rpx;
+  font-weight: normal;
+}
+
+/* button[type=default] */
+page button[type='default']:after {
+  display: inherit;
+}
+page button[type='default'],
+page button[type='default']:link,
+page button[type='default']:visited,
+/* page button[type='default']:active */
+page button[type='default']:focus {
+  color: #3e697a;
+  background-color: #f8f8f8;
+}
+page button[type='default'].button-hover {
+  background-color: rgba(248, 248, 248, 0.9);
+}
+
+/* button[disabled][type=default] */
+page button[disabled][type='default'],
+page button[disabled][type='default']:link,
+page button[disabled][type='default']:visited,
+/* page button[disabled][type='default']:active */
+page button[disabled][type='default']:focus {
+  color: rgba(62, 105, 122, 0.6);
+  background-color: rgba(248, 248, 248, 0.8);
+}
+page button[disabled][type='default'].button-hover {
+  background-color: rgba(248, 248, 248, 0.7);
+}
+
+/* button[type=primary] */
+page button[type='primary'],
+page button[type='primary']:link,
+page button[type='primary']:visited,
+/* page button[type='primary']:active */
+page button[type='primary']:focus {
+  color: rgba(255, 255, 255, 0.9);
+  background-color: #3e697a;
+}
+page button[type='primary'].button-hover {
+  background-color: rgba(62, 105, 122, 0.9);
+}
+
+/* button[disabled][type=primary] */
+page button[disabled][type='primary'],
+page button[disabled][type='primary']:link,
+page button[disabled][type='primary']:visited,
+/* page button[disabled][type='primary']:active */
+page button[disabled][type='primary']:focus {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(62, 105, 122, 0.8);
+}
+page button[disabled][type='primary'].button-hover {
+  background-color: rgba(62, 105, 122, 0.7);
+}
+
+/* button[type=warn] */
+page button[type='warn'],
+page button[type='warn']:link,
+page button[type='warn']:visited,
+/* page button[type='warn']:active */
+page button[type='warn']:focus {
+  color: rgba(255, 255, 255, 0.9);
+  background-color: #fa5151;
+}
+page button[type='warn'].button-hover {
+  background-color: rgba(250, 81, 81, 0.9);
+}
+
+/* button[disabled][type=warn] */
+page button[disabled][type='warn'],
+page button[disabled][type='warn']:link,
+page button[disabled][type='warn']:visited,
+/* page button[disabled][type='warn']:active */
+page button[disabled][type='warn']:focus {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(250, 81, 81, 0.8);
+}
+page button[disabled][type='warn'].button-hover {
+  background-color: rgba(250, 81, 81, 0.7);
+}

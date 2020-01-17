@@ -1,0 +1,72 @@
+<!-- pages/register/department.wxml -->
+<view>
+  <van-cell-group wx:if="{{!showAction}}">
+    <van-cell is-link title="挂号记录" url="/pages/register/record">
+      <view class="iconfont icon-calendar" slot="icon"></view>
+    </van-cell>
+  </van-cell-group>
+  <view bindtap="openSearch" class="search">
+    <view class="search__content">
+      <van-icon class="search-icon" name="search" size="16px" style="margin-right: 5px;" />
+      <input placeholder="搜索科室/医生" type="text" />
+    </view>
+  </view>
+  <scroll-view scroll-y>
+    <!-- 科室列表 -->
+    <van-row class="list">
+      <van-col bindtap="dialogOpen" data-item="{{ item }}" span="8" wx:for="{{ list }}" wx:key="index">
+        <view class="dept-icon" wx:if="{{ item.topDeptName }}">
+          <image
+            binderror="imageError"
+            data-index="{{index}}"
+            lazy-load="true"
+            src="https://image.lzihospital.com/portal/dept/{{item.topDeptId}}.png"
+            wx:if="{{!item.imageErr}}"
+          />
+          <image
+            binderror="imageError"
+            data-index="{{index}}"
+            lazy-load="true"
+            src="https://image.lzihospital.com/portal/dept/normal.png"
+            wx:else
+          />
+        </view>
+        <view class="name">{{ item.topDeptName}}</view>
+        <view class="amount">{{ item.docCnt }}位医生</view>
+      </van-col>
+    </van-row>
+  </scroll-view>
+  <!-- 科室门诊 - 右侧弹出 -->
+  <van-popup
+    bind:click-overlay="clickOverlay"
+    class="sider-dialog"
+    custom-style="height: 100%;width:75%"
+    position="right"
+    show="{{ showSider }}"
+  >
+    <view class="dialog">
+      <van-cell-group>
+        <van-cell
+          custom-class="dialog-head"
+          icon="{{ dialogData.TopDept.iconUrl }}"
+          title="{{ dialogData.topDeptName }}"
+        />
+      </van-cell-group>
+      <scroll-view scroll-y>
+        <van-cell-group>
+          <van-cell
+            bindtap="toSchedule"
+            data-dept="{{item}}"
+            is-link
+            title="{{ item.deptName}}"
+            wx:for="{{ dialogData.deptVos }}"
+            wx:key="index"
+          />
+        </van-cell-group>
+      </scroll-view>
+    </view>
+  </van-popup>
+</view>
+
+<!-- 搜索 -->
+<search bind:cancel="onSearchCancel" wx:if="{{showSearch}}" />

@@ -1,0 +1,93 @@
+<view class="search-page">
+  <view class="search search-fixed">
+    <view class="search__content">
+      <van-icon class="search-icon" name="search" size="16px" style="margin-right: 5px;" />
+      <input
+        bindconfirm="goSearch"
+        bindinput="binSearchChange"
+        focus="{{true}}"
+        placeholder="搜索科室/医生"
+        type="text"
+        value="{{searchKey}}"
+      />
+    </view>
+    <view catchtap="onCancel" class="search__action">
+      <text>取消</text>
+    </view>
+  </view>
+  <scroll-view class="search-action" scroll-y>
+    <view>
+      <!-- 搜索列表 -->
+      <van-cell-group class="search-list" wx:if="{{ searchList.depts }}">
+        <van-cell label="相关科室" value="{{ searchList.depts.length }}" />
+        <van-cell bindtap="toSchedule" data-dept="{{item}}" wx:for="{{ searchList.depts }}" wx:key="index">
+          <view class="item result" slot="title">
+            <image lazy-load="true" src="{{ item.deptIcon }}" wx:if="{{ item.deptIcon }}" />
+            <text
+              class="{{ word === searchKey && 'keyword' || '' }}"
+              wx:for="{{ item.dept }}"
+              wx:for-item="word"
+              wx:key="index"
+            >{{ word }}</text>
+          </view>
+        </van-cell>
+      </van-cell-group>
+      <view class="search-list-gutter" wx:if="{{ searchList.doctors }}"></view>
+      <van-cell-group class="search-list" wx:if="{{ searchList.doctors }}">
+        <van-cell label="相关医生" value="{{ searchList.doctors.length }}" />
+        <van-cell bindtap="gotoDoctor" data-doctor="{{item}}" wx:for="{{ searchList.doctors }}" wx:key="index">
+          <view class="item result" slot="title">
+            <image lazy-load="true" src="{{ item.doctorImage || '//img.wecity.qq.com/11/res/img/doctor.png' }}" />
+            <view>
+              <view>
+                <text
+                  class="{{ word === searchKey && 'keyword' || '' }}"
+                  wx:for="{{ item.doc }}"
+                  wx:for-item="word"
+                  wx:key="index"
+                >{{ word }}</text>
+                <text class="doctor-title">{{ item.docTitle }}</text>
+              </view>
+              <view class="doctor-dept">{{ item.deptName }}</view>
+            </view>
+          </view>
+        </van-cell>
+      </van-cell-group>
+
+      <!-- 即时列表 -->
+      <van-cell-group class="search-list" wx:if="{{ isShowAdviceWords }}">
+        <van-cell bind:click="goSearch" data-key="{{ item.name }}" wx:for="{{ adviceWords }}" wx:key="index">
+          <view class="item" slot="title">
+            <text
+              class="{{ item.name === searchKey && 'keyword' || '' }}"
+              wx:for="{{ item.word }}"
+              wx:for-item="word"
+              wx:key="index"
+            >{{ word }}</text>
+          </view>
+        </van-cell>
+      </van-cell-group>
+
+      <!-- 搜索加载时候的loading -->
+      <view class="loading-wrap" wx:if="{{isLoading}}">
+        <van-loading class="loading" color="#3E697A" type="spinner" />
+      </view>
+
+      <!-- 搜索历史 -->
+      <view wx:if="{{!searchKey&&searchHistory.length!==0}}">
+        <van-cell-group class="search-list">
+          <van-cell
+            bind:click="goSearch"
+            data-key="{{ item }}"
+            title="{{ item }}"
+            wx:for="{{ searchHistory }}"
+            wx:key="index"
+          />
+        </van-cell-group>
+        <view class="search-list">
+          <van-cell bindtap="cleanHistory" title="清除历史记录" title-class="clean" />
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

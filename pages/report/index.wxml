@@ -1,0 +1,20 @@
+<!--pages/report/index.wxml-->
+<patientcard bind:change="cardChange" />
+
+<scroll-view scroll-y>
+  <view class="surgery" wx:if="{{ list.length }}">
+    <van-cell-group>
+      <van-cell
+        is-link
+        title="{{item.itemClass}}"
+        url="/pages/report/detail?reportId={{item.reportNum}}&reportId={{item.reportNum}}&sampleClass={{item.sampleClass}}&reportDate={{item.reportDate}}&itemClass={{item.itemClass}}"
+        use-label-slot
+        wx:for="{{list}}"
+        wx:key="reportNum"
+      >
+        <view slot="label">样 本：{{item.sampleClass}} 时间：{{item.reportDate}}</view>
+      </van-cell>
+    </van-cell-group>
+  </view>
+  <empty wx:else></empty>
+</scroll-view>

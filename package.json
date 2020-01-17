@@ -1,0 +1,14 @@
+{
+  "name": "portal",
+  "version": "1.0.0",
+  "license": "ISC",
+  "dependencies": {
+    "@vant/weapp": "^1.0.2",
+    "dayjs": "^1.8.19"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "semi": false,
+    "singleQuote": true
+  }
+}

@@ -1,0 +1,43 @@
+<!--pages/surgery/index.wxml-->
+<view>
+  <view class="surgery">
+    <view class="patientInfo">
+      <view class="title">
+        个人信息
+        <button bindtap="getCode" class="shareBtn" size="mini">
+          <icon class="iconfont icon-fenxiang icon" />
+        </button>
+      </view>
+      <van-row>
+        <van-col span="8">姓名: {{patientName}}</van-col>
+        <van-col offset="4" span="12">性别: {{patientSex}}</van-col>
+      </van-row>
+      <van-row>
+        <van-col span="24" wx:if="{{bedNum}}">床号: {{bedNum}}</van-col>
+      </van-row>
+      <van-row>
+        <van-col span="8">医生: {{doctor}}</van-col>
+        <van-col offset="4" span="12">手术日期: {{operationDate}}</van-col>
+      </van-row>
+      <van-row>
+        <van-col span="24">科室：{{departmentName}}</van-col>
+      </van-row>
+
+      <van-row wx:if="{{operationName}}">
+        <van-col span="24">手术名称：{{operationName}}</van-col>
+      </van-row>
+    </view>
+    <view class="title surgeryInfo">手术信息</view>
+    <view class="progress surgeryInfo">
+      <view class="progressInfo {{item.className}}" wx:for="{{ list }}" wx:key="value">
+        <view>{{item.title}}</view>
+        <view>{{item.time}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<van-dialog bind:close="onClose" show="{{ show }}" show-cancel-button="{{ false }}" title="点击后长按二维码保存至相册" use-slot>
+  <view class="img">
+    <image bindtap="preview" src="{{imgSrc}}" />
+  </view>
+</van-dialog>

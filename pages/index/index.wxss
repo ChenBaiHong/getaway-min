@@ -1,0 +1,228 @@
+/* pages/index/index.wxss */
+
+/* index */
+swiper {
+  height: 360rpx;
+}
+.slide-image {
+  width: 100%;
+  height: calc(100vw * 0.48);
+}
+
+/* ------ tabs ------ */
+view.van-tabs {
+  margin-top: 20rpx;
+  background-color: #fff;
+}
+view.van-tab--active {
+  color: #3e697a;
+}
+view.van-tab__pane {
+  -webkit-overflow-scrolling: touch;
+}
+.menu .iconfont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  width: calc(100vw / 8);
+  height: calc(100vw / 8);
+  font-size: calc(100vw / 16);
+  border-radius: 50%;
+  background-color: #aaa;
+  color: #fff;
+}
+.menu .van-grid-item__text {
+  margin-top: 10rpx;
+}
+
+/* copyright */
+view.copyright {
+  margin-top: 20rpx;
+  padding: 20rpx 30rpx;
+  background-color: #fff;
+}
+view.copyright + view.copyright {
+  margin-top: 0;
+  margin-bottom: 20rpx;
+  padding-top: 0;
+}
+
+/* van-tabbar */
+view.van-tabbar {
+  height: 100rpx;
+  box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
+}
+view.van-tabbar-item__icon {
+  margin-bottom: 4rpx;
+  font-size: 56rpx;
+}
+view.van-tabbar-item__text {
+  font-size: 24rpx;
+}
+
+/* dialog-qrcode */
+.dialog-qrcode {
+  --dialog-width: 640rpx;
+  --dialog-small-screen-width: calc(var(--dialog-width) * 0.9);
+}
+.dialog-qrcode view.van-dialog__header {
+  height: 100rpx;
+  line-height: 100rpx;
+  padding-top: 0;
+}
+.dialog-qrcode view.van-button__text {
+  color: #3e697a;
+}
+.dialog-qrcode image {
+  display: block;
+  width: calc(var(--dialog-width) - 32rpx);
+  height: calc(var(--dialog-width) - 32rpx);
+  margin: 16rpx auto;
+}
+@media (max-width: 321px) {
+  .dialog-qrcode image {
+    width: calc(var(--dialog-small-screen-width) - 32rpx);
+    height: calc(var(--dialog-small-screen-width) - 32rpx);
+  }
+}
+
+/* 网红医生 */
+.docDiv {
+  margin-top: 20rpx;
+  max-width: 100%;
+}
+.docDiv .van-cell:after {
+  right: 30rpx;
+  left: 30rpx;
+}
+.doctorDiv {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 16rpx;
+}
+.doctorDiv .doctor {
+  width: calc((100vw - 128rpx) / 3);
+  border-radius: 5rpx;
+  margin: 16rpx;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  padding: 20rpx 0;
+  box-shadow: 0 0 5rpx rgb(204, 202, 202);
+}
+.doctorDiv .doctor .doctorAvatar {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 0 auto;
+}
+.doctorAvatar image {
+  width: 100%;
+  height: 100%;
+}
+
+.docName {
+  width: 100%;
+  font-size: 27rpx;
+  text-align: center;
+  line-height: 50rpx;
+  vertical-align: middle;
+}
+.typeName {
+  width: 100%;
+  font-size: 24rpx;
+  text-align: center;
+  color: #666;
+  line-height: 50rpx;
+  vertical-align: middle;
+}
+
+/* 新闻模块 */
+.newsDiv {
+  margin-top: 20rpx;
+  max-width: 100%;
+  background: #fff;
+}
+.newsDiv .van-cell:after {
+  right: 30rpx;
+  left: 30rpx;
+}
+.news {
+  width: calc(100vw - 60rpx);
+  border-bottom: 1px solid #eee;
+  padding: 20rpx 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 auto;
+}
+.news .imageDiv {
+  width: 120rpx;
+  height: 120rpx;
+}
+.news .imageDiv .image {
+  width: 120rpx;
+  height: 120rpx;
+}
+.news .textDiv {
+  padding-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+.news .textDiv .title {
+  width: calc(100vw - 210rpx);
+  font-size: calc((100vw - 210rpx) / 20);
+  height: 80rpx;
+  color: rgb(88, 88, 88);
+  line-height: 40rpx;
+}
+.news .textDiv .infoDiv {
+  font-size: 24rpx;
+  color: #a1a6a8;
+  line-height: 40rpx;
+}
+.news .textDiv .infoDiv .read {
+  display: block;
+  float: right;
+  margin-right: 30rpx;
+}
+
+/* auth */
+.auth {
+  display: flex;
+  flex-direction: column;
+  margin: 0 60rpx;
+}
+.auth .avatar {
+  height: 160rpx;
+  line-height: 160rpx;
+  margin-top: 100rpx;
+  font-size: 160rpx;
+  text-align: center;
+  color: #3e697a;
+}
+.auth .tips {
+  margin-top: 60rpx;
+  font-size: 32rpx;
+}
+.auth .tips + .tips {
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  color: #888;
+}
+.auth .upgrade {
+  text-align: center;
+}
+.auth button {
+  width: 100%;
+  margin-top: 60rpx;
+}
+
+/* user */
+.user view.van-grid {
+  margin-top: 100rpx;
+}
+.user icon.iconfont {
+  font-size: 120rpx;
+  color: #3e697a;
+}

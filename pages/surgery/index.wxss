@@ -1,0 +1,21 @@
+view.van-tabs view.van-cell__title {
+  font-size: 36rpx;
+}
+view.van-tabs view.datetime {
+  margin-top: 10rpx;
+}
+view.van-tab--active {
+  color: hsl(197, 74%, 54%);
+}
+view.van-cell__value {
+  flex: 0 0 auto;
+}
+
+van-icon.van-cell__right-icon-wrap {
+  height: auto;
+}
+.emptyData {
+  padding: 100rpx 0;
+  text-align: center;
+  color: #666;
+}

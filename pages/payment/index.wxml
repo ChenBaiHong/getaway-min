@@ -1,0 +1,61 @@
+<!-- pages/payment/index.wxml -->
+<patientcard bind:change="cardChange" />
+
+<scroll-view scroll-y>
+  <van-tabs active="{{ tabActive }}" bind:change="tabChange" color="#3E697A">
+    <van-tab title="待缴费">
+      <van-checkbox-group bind:change="onChange" value="{{ checkResult }}">
+        <van-cell-group>
+          <van-cell title="{{ item.departmentName }}" use-label-slot wx:for="{{ notPays }}" wx:key="index">
+            <view class="checkBoxView" slot="label">
+              <view bind:click="toggle" data-index="{{ item.billNums }}" value-class="value-class">
+                <van-checkbox catch:tap="noop" class="checkboxes-{{ item.billNums }}" name="{{ item.billNums }}">
+                  <view class="text">
+                    <view class="datetime">开单时间：{{ item.createTime }}</view>
+                    <view>就诊类型：{{ item.visitType }}</view>
+                    <view>缴费类型：{{ item.billName }}</view>
+                    <view>缴费金额：¥ {{ item.fee || 0 }}</view>
+                  </view>
+                </van-checkbox>
+              </view>
+              <view bind:tap="toDetail" class="toBtn" data-option="{{item}}">
+                <van-icon name="arrow" size="35rpx" />
+              </view>
+            </view>
+          </van-cell>
+        </van-cell-group>
+      </van-checkbox-group>
+      <van-submit-bar
+        bind:submit="toPay"
+        button-text="支付"
+        disabled="{{!feeTotal*100}}"
+        price="{{ feeTotal*100 }}"
+        tip="{{ true }}"
+        wx:if="{{ notPays && notPays.length }}"
+      >
+        <van-checkbox bind:change="checkAll" checked="{{checkAll}}" value="{{ checkAll }}">全选</van-checkbox>
+      </van-submit-bar>
+    </van-tab>
+    <van-tab title="已缴费">
+      <van-cell-group>
+        <van-cell
+          is-link
+          title="{{ item.departmentName }}"
+          url="/pages/payment/order?outpatientNum={{ item.outpatientNum }}&billNums={{ item.billNums }}&billType={{ item.billType }}&billName={{ item.billName }}&paytime={{item.payTime}}"
+          use-label-slot
+          value="已完成"
+          wx:for="{{ pays }}"
+          wx:key="index"
+        >
+          <view class="datetime" slot="label">开单时间：{{ item.createTime }}</view>
+          <view slot="label">就诊类型：{{ item.visitType }}</view>
+          <view slot="label">缴费类型：{{ item.billName }}</view>
+          <view slot="label">缴费金额：¥ {{ item.fee }}</view>
+        </van-cell>
+      </van-cell-group>
+    </van-tab>
+  </van-tabs>
+
+  <empty wx:if="{{ tabActive === 0 && notPays && !notPays.length }}"></empty>
+  <empty wx:if="{{ tabActive === 1 && pays && !pays.length }}"></empty>
+</scroll-view>

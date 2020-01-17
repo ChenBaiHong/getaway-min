@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "科室列表",
+  "usingComponents": {
+    "search": "../../components/department-search"
+  }
+}

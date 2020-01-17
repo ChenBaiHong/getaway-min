@@ -1,0 +1,60 @@
+/* pages/payment/index.wxss */
+
+/* tab */
+/* view.van-tabs {
+  margin-top: 40rpx;
+} */
+view.van-tabs view.van-cell__title {
+  font-size: 36rpx;
+}
+view.van-tabs view.datetime {
+  margin-top: 10rpx;
+}
+view.van-tab--active {
+  color: #3e697a;
+}
+view.van-cell__value {
+  flex: 0 0 auto;
+}
+
+van-icon.van-cell__right-icon-wrap {
+  height: auto;
+}
+
+.checkBoxView {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.checkBoxView > view:first-child {
+  height: 150rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.checkBoxView van-checkbox {
+  width: calc(100vw - 250rpx);
+}
+.checkBoxView .van-checkbox__icon-wrap {
+  display: flex;
+  align-items: center;
+}
+.checkBoxView > view.text {
+  padding-left: 30rpx;
+}
+.checkBoxView > view.toBtn {
+  width: 190rpx;
+  height: 150rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.value-class {
+  flex: none !important;
+}
+.van-submit-bar {
+  padding-left: 30rpx;
+}
+button.van-button--square {
+  width: 200rpx;
+}

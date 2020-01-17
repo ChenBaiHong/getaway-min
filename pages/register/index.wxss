@@ -1,0 +1,47 @@
+/* pages/register/index.wxss */
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+van-cell-group + van-cell-group {
+  margin-top: 30rpx;
+}
+
+.logo {
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 8rpx;
+}
+
+.title {
+  color: #333;
+  font-size: 32rpx;
+}
+
+.tags {
+  text-align: left;
+}
+.tags van-tag + van-tag {
+  margin-left: 10rpx;
+}
+
+van-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+}
+.van-cell__label {
+  text-indent: 10rpx;
+}
+
+.van-icon.van-icon-location {
+  font-size: 32rpx;
+  color: #999;
+}
+
+.van-icon.van-icon-phone {
+  font-size: 44rpx;
+  color: #54b83b;
+}

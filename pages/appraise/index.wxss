@@ -1,0 +1,131 @@
+/* pages/appraise/index.wxss */
+.page {
+  background-color: #fff;
+}
+
+/* ------ tabs ------ */
+view.van-tabs__wrap {
+  z-index: 1;
+  box-shadow: 0 0 20rpx #e0e0e0;
+}
+view.van-tab__title {
+  font-size: 30rpx;
+}
+view.van-tab--active {
+  color: #3e697a;
+}
+
+/* content */
+.content {
+  padding: 40rpx 30rpx 30rpx 30rpx;
+}
+
+/* tips */
+view.tips {
+  font-size: 26rpx;
+  color: #888;
+}
+view.tips:not(:first-child) {
+  margin-top: 40rpx;
+}
+
+/* radio-group */
+.radio-group {
+  margin-top: 40rpx;
+}
+.radio-group,
+.radio-group van-radio-group {
+  display: flex;
+}
+.radio-group .van-radio {
+  margin-left: 20rpx;
+}
+.radio-group .van-radio__label {
+  margin-left: 10rpx;
+  line-height: 40rpx;
+}
+
+/* rate-item */
+.rate-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40rpx;
+}
+.rate-item .van-rate {
+  line-height: 1;
+}
+.rate-item > view:first-child {
+  flex: 1 1 auto;
+}
+
+/* textarea */
+textarea {
+  width: 100%;
+  height: 300rpx;
+  margin-top: 40rpx;
+  border: 2rpx solid #eee;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+}
+.textarea-placeholder {
+  color: #999;
+}
+.input-textarea {
+  margin-top: 100rpx;
+}
+.input-textarea textarea {
+  margin-top: 10rpx;
+}
+
+/* pictures */
+.pictures {
+  margin-top: 40rpx;
+}
+.pictures .icon-camera {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64rpx;
+  height: 64rpx;
+  font-size: 36rpx;
+  border: 2rpx dotted #999;
+  border-radius: 10rpx;
+  color: #666;
+}
+
+/* input-group */
+.input-group view.van-cell-group {
+  margin-top: 40rpx;
+}
+.input-group view.van-cell:after {
+  left: 0;
+  border-bottom-color: #aaa;
+}
+
+/* actions */
+.actions {
+  margin-top: 60rpx;
+  padding-bottom: 30rpx;
+}
+
+/*  图片列表 */
+.imageView {
+  width: calc((100vw - 100rpx) / 5);
+  height: calc((100vw - 100rpx) / 5);
+  position: relative;
+}
+.image {
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.imageView .delbtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 30rpx;
+  height: 30rpx;
+  background: #fff;
+}

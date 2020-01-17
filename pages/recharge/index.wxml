@@ -1,0 +1,47 @@
+<!--pages/recharge/index.wxml-->
+<patientcard bind:change="cardChange" />
+
+<scroll-view scroll-y>
+  <van-tabs active="{{ tabActive }}" bind:change="tabChange" color="#3E697A" line-width="{{ minHW * 0.5 }}">
+    <van-tab title="{{ typeSelected.text }}充值">
+      <view class="recharge">
+        <view class="balance">¥ {{ balance }}</view>
+        <view class="balance_title">账户余额</view>
+      </view>
+
+      <van-cell-group class="fee">
+        <van-field
+          bind:input="inputChange"
+          clearable
+          focus
+          label="充值金额¥"
+          placeholder="请输入充值金额"
+          type="digit"
+          value="{{ fee }}"
+        />
+        <van-field disabled input-class="input_name" label="就诊账户" readonly value="{{ patientSelected.name }}" />
+      </van-cell-group>
+
+      <view class="actions">
+        <button bindtap="toPay" disabled="{{ loading }}" type="primary">立即充值</button>
+      </view>
+    </van-tab>
+    <van-tab title="充值记录">
+      <van-cell-group class="record" wx:if="{{ records.length }}">
+        <van-cell title="时间">
+          <view class="record-info">
+            <view class="record-amount">金额</view>
+            <view class="record-way">渠道</view>
+          </view>
+        </van-cell>
+        <van-cell title="{{ item.tradeDate }}" wx:for="{{ records }}" wx:key="index">
+          <view class="record-info">
+            <view class="record-amount">+{{ item.tradeAmount || 0.00 }}</view>
+            <view class="record-way">{{ item.tradeWayStr }}</view>
+          </view>
+        </van-cell>
+      </van-cell-group>
+    </van-tab>
+  </van-tabs>
+  <empty wx:if="{{ tabActive === 1 && !records.length }}"></empty>
+</scroll-view>

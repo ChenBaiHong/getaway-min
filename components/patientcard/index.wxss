@@ -1,0 +1,53 @@
+/* components/patientcard/index.wxss */
+.patient-top {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+}
+view.patient-show {
+  /* position: fixed; */
+  z-index: 1;
+  background-color: #3e697a;
+  color: #fff;
+}
+view.patient-show::after {
+  display: none;
+}
+view.patient-show van-icon {
+  display: flex;
+  align-items: center;
+}
+
+view.patient-value {
+  font-size: 32rpx;
+}
+view.patient-value,
+view.patient-arrow {
+  color: #fff;
+}
+view.patient-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 10rpx;
+  font-size: 48rpx;
+}
+view.patient-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 10rpx;
+}
+
+view.patient-item {
+  display: flex;
+  align-items: center;
+}
+view.patient-item-title {
+  margin-left: 20rpx;
+}
+view.patient-item-value {
+  margin-right: 40rpx;
+  color: #3e697a;
+}

@@ -1,0 +1,75 @@
+<view class="page">
+  <!-- 医生信息 -->
+  <van-cell-group>
+    <van-cell class="doctor-cell" use-label-slot>
+      <image
+        class="avatar"
+        slot="icon"
+        src="{{ doctorInfo.doctorImage || '//img.wecity.qq.com/11/res/img/doctor.png' }}"
+      />
+      <view class="name" slot="title">
+        {{ doctorInfo.docName }}
+        <van-tag plain type="success">{{ doctorInfo.docTitle }}</van-tag>
+      </view>
+      <view class="label" slot="label">
+        <view>{{ doctorInfo.hospName }}</view>
+        <view>{{ doctorInfo.deptName }}</view>
+      </view>
+    </van-cell>
+  </van-cell-group>
+  <view class="no-data-tips" wx:if="{{scheduleList.length===0}}">近无可预约排班</view>
+  <view class="week-wrap" wx:else>
+    <view class="tips">
+      <van-icon name="info-o" />当日挂号不可取消，请确认就诊时间无误再操作
+    </view>
+    <view class="section-title">
+      <view>排班</view>
+      <view>上午</view>
+      <view>下午</view>
+    </view>
+    <view class="rows">
+      <view>
+        <view wx:for="{{ dates }}" wx:key="index">
+          {{ item.less }}
+          <view>{{ item.week }}</view>
+        </view>
+      </view>
+      <view>
+        <view
+          class="{{scheduleList[item.key]['1'].reservationInfo===2?'has-duration':'no-duration'}}"
+          wx:for="{{ dates }}"
+          wx:key="index"
+        >
+          <view
+            bindtap="goto"
+            class="goto"
+            data-am-pm="1"
+            data-date="{{item.key}}"
+            data-info="{{scheduleList[item.key]['1']}}"
+          >
+            <view>{{scheduleList[item.key]['1'].reservationInfoStr}}</view>
+            <view>{{scheduleList[item.key]['1'].fee }}元</view>
+          </view>
+        </view>
+      </view>
+      <view>
+        <view
+          class="{{scheduleList[item.key]['2'].reservationInfo===2?'has-duration':'no-duration'}}"
+          wx:for="{{ dates }}"
+          wx:key="index"
+        >
+          <view
+            bindtap="goto"
+            class="goto"
+            data-am-pm="2"
+            data-date="{{item.key}}"
+            data-info="{{scheduleList[item.key]['2']}}"
+          >
+            <view>{{scheduleList[item.key]['2'].reservationInfoStr}}</view>
+            <view>{{ scheduleList[item.key]['2'].fee }}元</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

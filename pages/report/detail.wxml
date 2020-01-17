@@ -1,0 +1,35 @@
+<!--pages/report/detail.wxml-->
+<scroll-view scroll-y>
+  <van-cell-group>
+    <van-cell title="就诊人" value="{{ name }}"></van-cell>
+    <van-cell title="检查项目" value="{{ itemClass }}"></van-cell>
+    <van-cell title="标本类型" value="{{ sampleClass }}"></van-cell>
+    <van-cell title="报告时间" value="{{ reportDate }}"></van-cell>
+  </van-cell-group>
+  <view class="reportDetailList" wx:for="{{list}}" wx:key="chineseName">
+    <view class="title">
+      <text>项目：</text>
+      <text class="deportName">{{item.chineseName}}</text>
+    </view>
+    <view class="deportList">
+      <van-row class="title">
+        <van-col span="6">单位</van-col>
+        <van-col span="6">参考范围</van-col>
+        <van-col span="6">定量结果</van-col>
+        <van-col span="6">定性结果</van-col>
+      </van-row>
+      <van-row class="deportName">
+        <van-col span="6">{{item.unit}}</van-col>
+        <van-col span="6">{{item.referenceValue}}</van-col>
+        <van-col span="6">{{item.quantitativeResult}}</van-col>
+        <van-col span="6">
+          <text
+            class="{{item.qualitativeResult ==='偏高' && 'warning' || item.qualitativeResult ==='偏低' && 'warning' || ''}}"
+          >{{item.qualitativeResult}}</text>
+        </van-col>
+      </van-row>
+    </view>
+  </view>
+  <view class="prompt warning">*此结果只提供参考，以医院出具的纸质报告加盖章为准</view>
+  <view class="bottomView"></view>
+</scroll-view>

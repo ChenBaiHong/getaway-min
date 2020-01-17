@@ -1,0 +1,31 @@
+<view class="page">
+  <van-panel bindtap="goto" data-reservation-id="{{ item.ReservationId }}" style="width:100%">
+    <van-cell slot="header" title="预约信息"></van-cell>
+    <view class="cell">
+      <text>医院</text>
+      <text>{{info.hospName}}</text>
+    </view>
+    <view class="cell">
+      <text>科室</text>
+      <text>{{ info.deptName}}</text>
+    </view>
+    <view class="cell">
+      <text>医生</text>
+      <text>{{info.docName}}</text>
+    </view>
+    <view class="cell">
+      <text>就诊人</text>
+      <text>{{ info.patientName}}</text>
+    </view>
+    <view class="cell">
+      <text>时间</text>
+      <text>{{ info.dateTime}}</text>
+    </view>
+  </van-panel>
+  <view class="options">
+    <button bindtap="takeReserv" type="primary">线上排号</button>
+    <view class="tip">
+      <van-icon color="#1aad19" name="info-o" size="16px" style="display:inline-block" />线上排号后可凭公众号推送的排号结果(当日挂号消息)直接就诊,无需再线下换号
+    </view>
+  </view>
+</view>

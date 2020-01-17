@@ -1,0 +1,64 @@
+/* pages/recharge/index.wxss */
+
+/* tabs */
+/* view.van-tabs {
+  margin-top: 20rpx;
+} */
+view.van-tab--active {
+  color: #3e697a;
+}
+
+/* recharge */
+.recharge {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300rpx;
+  background-color: #fff;
+}
+.recharge .balance {
+  font-size: 56rpx;
+  font-weight: 500;
+}
+.recharge .balance_title {
+  margin-top: 20rpx;
+  color: #999;
+}
+
+/* fee */
+.fee view.van-cell__title {
+  color: #999;
+}
+.fee input.input_name {
+  color: #333;
+}
+
+/* record */
+.record view.van-cell__value {
+  flex: 0 0 auto;
+  width: 360rpx;
+}
+.record-info {
+  display: flex;
+  justify-content: space-between;
+}
+.record-info view {
+  flex: 1 1 auto;
+  text-align: right;
+}
+.record-amount,
+.record-way {
+  width: 50%;
+}
+.record-amount {
+  color: #f60;
+}
+.record-empty view.van-cell__value {
+  text-align: center;
+}
+
+/* actions */
+.actions {
+  padding: 60rpx 30rpx;
+}

@@ -1,0 +1,143 @@
+/* pages/register/doctor.wxss */
+.page {
+  display: flex;
+  flex-direction: column;
+}
+/* head */
+image.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 20rpx;
+}
+
+view.name,
+view.name van-tag,
+view.label {
+  display: flex;
+  align-items: center;
+}
+view.name {
+  font-size: 36rpx;
+}
+view.name van-tag {
+  margin-left: 20rpx;
+}
+
+view.label {
+  margin-top: 20rpx;
+}
+view.label view + view {
+  margin-left: 30rpx;
+}
+
+/* section-title */
+.section-title {
+  display: flex;
+  background-color: #f7f7f7;
+  color: #888;
+  border-right: 1rpx solid #e0e0e0;
+  border-bottom: 1rpx solid #e0e0e0;
+}
+.section-title > view {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: 100rpx;
+  border-left: 1rpx solid #e0e0e0;
+  border-top: 1rpx solid #e0e0e0;
+  /* border-bottom: 1rpx solid #e0e0e0; */
+}
+.section-title > view:first-child {
+  width: 20%;
+}
+
+/* rows */
+.rows {
+  flex: 1 1 auto;
+  display: flex;
+  /* border-top: 1rpx solid #e0e0e0; */
+  border-right: 1rpx solid #e0e0e0;
+  background-color: #fff;
+  color: #888;
+}
+.rows > view {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+.rows > view:first-child {
+  width: 20%;
+}
+.rows > view > view {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 110rpx;
+  border-left: 1rpx solid #e0e0e0;
+  border-bottom: 1rpx solid #e0e0e0;
+}
+.rows > view > view.has-duration {
+  /* background-color: rgba(19, 186, 132, 0.1); */
+  background-color: #e5f8e5;
+  border-color: rgba(19, 186, 132, 0.3);
+  /* color: #3e697a; */
+  color: #3cc51f;
+}
+.rows > view > view.no-duration {
+  /* background-color: #f7f7f7; */
+  background-color: #fff;
+  color: #888;
+}
+
+/* tips */
+view.tips,
+view.tips van-icon {
+  display: flex;
+  align-items: center;
+}
+view.tips {
+  padding: 20rpx 30rpx;
+  color: #666;
+}
+view.tips van-icon {
+  margin-right: 10rpx;
+  color: #3e697a;
+}
+.no-data-tips {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40rpx;
+  height: 180rpx;
+  font-size: 28rpx;
+  background-color: #fff;
+  color: #333;
+}
+.goto {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.week-wrap {
+  padding: 10rpx;
+}
+.doctor-cell view.van-cell {
+  line-height: 48rpx;
+  padding: 30rpx;
+}
+
+.text-left {
+  text-align: left;
+}
+view {
+  font-size: 24rpx;
+}

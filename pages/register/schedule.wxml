@@ -1,0 +1,37 @@
+<!-- pages/register/schedule.wxml -->
+
+<view>
+  <van-tabs color="#3E697A" line-width="{{ 100 }}" sticky swipe-threshold="{{ 3 }}" wx:if="{{ scheduleData }}">
+    <van-tab title="{{ i.formatDate }}" wx:for="{{ scheduleData }}" wx:for-item="i" wx:key="index">
+      <view class="tips" wx:if="{{ i.isToday }}">
+        <van-icon name="info-o" />当日挂号不可取消，请确认就诊时间无误再操作
+      </view>
+      <view style="padding-top:20rpx" wx:else></view>
+      <van-cell-group>
+        <van-cell
+          bindtap="toPage"
+          data-doctor="{{item}}"
+          data-item="{{ item }}"
+          is-link
+          title-class="doctor-title"
+          value-class="doctor-value"
+          wx:for="{{ i.list }}"
+          wx:key="index"
+        >
+          <image
+            class="avatar"
+            slot="icon"
+            src="{{  item.doctorImgUrl || '//img.wecity.qq.com/11/res/img/doctor.png' }}"
+          />
+          <view class="name" slot="title">{{ item.docName }}</view>
+          <view class="title" slot="title">{{ item.docTitle }}</view>
+          <view class="{{ item.reservationInfo!==6 ? 'has-duration' : '' }}">
+            <text>{{item.reservationInfoStr}}</text>
+          </view>
+          <view class="cost">{{ item.fee }}元</view>
+        </van-cell>
+      </van-cell-group>
+    </van-tab>
+  </van-tabs>
+  <empty wx:else></empty>
+</view>
